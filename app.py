@@ -48,8 +48,9 @@ def login():
 @app.route("/dashboard",methods = ['GET', 'POST'])
 def dashboard():
     if ('user' in session and session['user'] == params['admin_user']):
-        warehouse = Warehouse.query.all()
-        return render_template('index.html', params=params,warehouse=warehouse)
+        warehouse = db.engine.execute('select * from warehouse order by sno DESC LIMIT 10').scalar()
+        # warehouse = Warehouse.query.all()
+        return render_template('index.html', params=params, warehouse=warehouse)
 
     if request.method == 'POST':
         # values fecthed from index.html form using their ids
@@ -59,10 +60,25 @@ def dashboard():
         if username == params['admin_user'] and userpass == params['admin_password']:
             session['user'] = username
             # name of the template and argument passed in it
-            warehouse = Warehouse.query.all()
-            return render_template('index.html', params=params,warehouse=warehouse )
+            warehouse = db.engine.execute('select * from warehouse order by sno DESC LIMIT 10').scalar()
+            return render_template('index.html', params=params, warehouse=warehouse)
+            # return render_template('user_payment.html', params=params)
         # name of the template and argument passed in it
     return render_template('user_login.html', params=params)
 
+@app.route("/pay", methods = ['GET', 'POST'])
+def pay():
+    if ('user' in session and session['user'] == params['admin_user']):
+        # show = db.engine.execute('select * from warehouse').scalar()
+        print("Payed")
+        return redirect('/payed')
+
+
+# # TODO: STOCK LIST
+@app.route("/payed")
+def payed():
+    if ('user' in session and session['user'] == params['admin_user']):
+        warehouse = Warehouse.query.all()
+        return render_template('payed.html', params=params, list=warehouse)
 
 app.run(debug=True)

@@ -9,19 +9,8 @@
 	<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css">
 </head>
 <body>
-<nav class="navbar navbar-expand-sm bg-light">
 
-  <ul class="navbar-nav">
-    <li class="nav-item">
-      <a class="nav-link" href="/stock_list">Data List</a>
-    </li>
-  </ul>
 
-</nav>
-
-<div class="container">
-    <a class="btn btn-success" href="/pay">Pay 5 $</a>
-</div>
 	<table id="example" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
         <thead>
             <tr>
@@ -36,14 +25,14 @@
             </tr>
         </thead>
         <tbody>
-            {% for ware in warehouse %}
+            {% for l in list %}
             <tr>
-                <td>{{ware.sno}}</td>
-                <td>{{ware.manufacturer}}</td>
-                <td>{{ware.series}}</td>
-                <td>{{ware.cpu_Name}}</td>
-                <td>{{ware.cores}}</td>
-                <td>{{ware.socket}}</td>
+                <td>{{l.sno}}</td>
+                <td>{{l.manufacturer}}</td>
+                <td>{{l.series}}</td>
+                <td>{{l.cpu_Name}}</td>
+                <td>{{l.cores}}</td>
+                <td>{{l.socket}}</td>
             </tr>
 
             {% endfor %}
