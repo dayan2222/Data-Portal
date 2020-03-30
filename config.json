@@ -1,0 +1,14 @@
+{
+
+  "parameters":
+  {
+    "local_server": "True",
+    "local_url": "postgresql://postgres:9876@localhost/Test",
+    "external_url": "postgresql://postgres:9876@localhost/Test",
+    "admin_user": "admin",
+    "admin_password": "password",
+    "login_user": "login",
+    "login_password": "pass"
+  }
+
+}
